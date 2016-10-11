@@ -21,6 +21,27 @@ This was done in collaboration with Constantin Blach (s4329872).
 \section{} %1
 \section{} %2
 \section{} %3
+Initial state:
+
+\begin{tikzpicture}[baseline=(s.north), node distance=5em, c/.style={circle, draw, minimum width=2em}]
+	\node[c] (s) {$0$};
+	\node[c, right=of s] (t) {$\infty$};
+	\node[c, right=of t] (x) {$\infty$};
+	\node[c, below=of t] (y) {$\infty$};
+	\node[c, below=of x] (z) {$\infty$};
+
+	\path[->, thick] (s) edge node [auto] {$6$} (t);
+	\path[->, thick] (s) edge node [below] {$7$} (y);
+	\path[->, thick, bend left] (t) edge node [auto] {$5$} (x);
+	\path[->, thick] (t) edge node [auto] {$8$} (y);
+	\path[->, thick] (t) edge node [right] {$-4$} (z);
+	\path[->, thick, bend left] (x) edge node [above] {$-2$} (t);
+	\path[->, thick] (y) edge node [left] {$-3$} (x);
+	\path[->, thick] (y) edge node [below] {$9$} (z);
+	\path[->, thick] (z) edge node [auto] {$2$} (s);
+	\path[->, thick] (z) edge node [right] {$7$} (x);
+\end{tikzpicture}
+
 \section{} %4
 We can treat the currencies $c_1, c_2, \dots, c_n$ as vertices and the exchange rates $r_{i, j}$ as directed edges $(c_i, c_j)$ with weight $r_{i, j}$. $G = (V, E), V = c_1, c_2, \dots, c_n, E = \{r_{i, j}\ |\ i, j \in \mathbb{N^+}, i \leq n, j \leq n\}$
 
