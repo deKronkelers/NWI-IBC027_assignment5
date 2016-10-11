@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 
+\usepackage{amssymb}
 \usepackage[top=5em, bottom=5em, left=5em, right=5em]{geometry}
 \usepackage{listings}
 \usepackage{tikz}
@@ -21,6 +22,10 @@ This was done in collaboration with Constantin Blach (s4329872).
 \section{} %2
 \section{} %3
 \section{} %4
+We can treat the currencies $c_1, c_2, \dots, c_n$ as vertices and the exchange rates $r_{i, j}$ as directed edges $(c_i, c_j)$ with weight $r_{i, j}$. $G = (V, E), V = c_1, c_2, \dots, c_n, E = \{r_{i, j}\ |\ i, j \in \mathbb{N^+}, i \leq n, j \leq n\}$
+
+We want to find the optimal path from $s \in V$ to $t \in V$. The optimal path is defined as the path that that maximises the output of $t$. This is the path with the highest accumulative exchange rate. There may not exists an optimal path if $G$ contains circles with an accumulative exchange rate greater than $1$.
+
 \section{} %5
 
 \end{document}
