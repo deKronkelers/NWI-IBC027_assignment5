@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{amssymb}
+\usepackage{multicol}
 \usepackage[top=5em, bottom=5em, left=5em, right=5em]{geometry}
 \usepackage{listings}
 \usepackage{tikz}
@@ -41,6 +42,46 @@ Initial state:
 	\path[->, thick] (z) edge node [auto] {$2$} (s);
 	\path[->, thick] (z) edge node [right] {$7$} (x);
 \end{tikzpicture}
+
+$(u, v) \rightarrow x$ denotes that after the relaxation of edge $(u, v)$ vertex $x$ has a weight of $x$.
+
+\begin{enumerate}
+	\item
+	Relaxation:
+	\begin{multicols}{3}
+		\begin{description}
+			\item[$(t, x)$] $\rightarrow \infty$
+			\item[$(t, y)$] $\rightarrow \infty$
+			\item[$(t, z)$] $\rightarrow \infty$
+			\item[$(x, t)$] $\rightarrow \infty$
+			\item[$(y, x)$] $\rightarrow \infty$
+			\item[$(y, z)$] $\rightarrow \infty$
+			\item[$(z, x)$] $\rightarrow \infty$
+			\item[$(z, s)$] $\rightarrow \infty$
+			\item[$(s, t)$] $\rightarrow 6$
+			\item[$(s, y)$] $\rightarrow 7$
+		\end{description}
+	\end{multicols}
+
+	\begin{tikzpicture}[baseline=(s.north), node distance=5em, c/.style={circle, draw, minimum width=2em}]
+		\node[c] (s) {$0$};
+		\node[c, right=of s] (t) {$6$};
+		\node[c, right=of t] (x) {$\infty$};
+		\node[c, below=of t] (y) {$7$};
+		\node[c, below=of x] (z) {$\infty$};
+
+		\path[->, thick] (s) edge node [auto] {$6$} (t);
+		\path[->, thick] (s) edge node [below] {$7$} (y);
+		\path[->, thick, bend left] (t) edge node [auto] {$5$} (x);
+		\path[->, thick] (t) edge node [auto] {$8$} (y);
+		\path[->, thick] (t) edge node [right] {$-4$} (z);
+		\path[->, thick, bend left] (x) edge node [above] {$-2$} (t);
+		\path[->, thick] (y) edge node [left] {$-3$} (x);
+		\path[->, thick] (y) edge node [below] {$9$} (z);
+		\path[->, thick] (z) edge node [auto] {$2$} (s);
+		\path[->, thick] (z) edge node [right] {$7$} (x);
+	\end{tikzpicture}
+\end{enumerate}
 
 \section{} %4
 We can treat the currencies $c_1, c_2, \dots, c_n$ as vertices and the exchange rates $r_{i, j}$ as directed edges $(c_i, c_j)$ with weight $r_{i, j}$. $G = (V, E), V = c_1, c_2, \dots, c_n, E = \{r_{i, j}\ |\ i, j \in \mathbb{N^+}, i \leq n, j \leq n\}$
