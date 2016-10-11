@@ -119,6 +119,42 @@ $(u, v) \rightarrow x$ denotes that after the relaxation of edge $(u, v)$ vertex
 		\path[->, thick] (z) edge node [auto] {$2$} (s);
 		\path[->, thick] (z) edge node [right] {$7$} (x);
 	\end{tikzpicture}
+
+	\item
+	Relaxation:
+	\begin{multicols}{3}
+		\begin{description}
+			\item[$(t, x)$] $\rightarrow 4$
+			\item[$(t, y)$] $\rightarrow 7$
+			\item[$(t, z)$] $\rightarrow 2$
+			\item[$(x, t)$] $\rightarrow 2$
+			\item[$(y, x)$] $\rightarrow 4$
+			\item[$(y, z)$] $\rightarrow 2$
+			\item[$(z, x)$] $\rightarrow 4$
+			\item[$(z, s)$] $\rightarrow 0$
+			\item[$(s, t)$] $\rightarrow 2$
+			\item[$(s, y)$] $\rightarrow 7$
+		\end{description}
+	\end{multicols}
+
+	\begin{tikzpicture}[baseline=(s.north), node distance=5em, c/.style={circle, draw, minimum width=2em}]
+		\node[c] (s) {$0$};
+		\node[c, right=of s] (t) {$2$};
+		\node[c, right=of t] (x) {$4$};
+		\node[c, below=of t] (y) {$7$};
+		\node[c, below=of x] (z) {$2$};
+
+		\path[->, thick] (s) edge node [auto] {$6$} (t);
+		\path[->, thick] (s) edge node [below] {$7$} (y);
+		\path[->, thick, bend left] (t) edge node [auto] {$5$} (x);
+		\path[->, thick] (t) edge node [auto] {$8$} (y);
+		\path[->, thick] (t) edge node [right] {$-4$} (z);
+		\path[->, thick, bend left] (x) edge node [above] {$-2$} (t);
+		\path[->, thick] (y) edge node [left] {$-3$} (x);
+		\path[->, thick] (y) edge node [below] {$9$} (z);
+		\path[->, thick] (z) edge node [auto] {$2$} (s);
+		\path[->, thick] (z) edge node [right] {$7$} (x);
+	\end{tikzpicture}
 \end{enumerate}
 
 \section{} %4
