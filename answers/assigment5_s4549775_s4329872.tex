@@ -28,6 +28,25 @@ We want to find the optimal path from $s \in V$ to $t \in V$. The optimal path i
 
 Exchange rates are accumulated by multiplication.
 
+We can find the optimal path by modifying the Bellman-Ford algorithm:
+
+\begin{lstlisting}
+d[s] <- 0
+for v in V - s
+	d[v] <- infinity
+
+for i in 1..|V|-1
+	for u, v in E
+		if d[v] < d[u] * w(u, v)
+			d[v] <- d[u] * w(u, v)
+
+for u, v in E
+	if d[v] < d[u] * w(u, v)
+		throw MoneyPrintingMachineException
+\end{lstlisting}
+
+Where $infinity = \infty$ and $w(u, v) = r_{u, v}$ and $MoneyPrintingMachineException$ indicates that we found a loop with an accumulative exchange rate greater than $1$ which means we can make money by taking this loop so there is no optimal path as we can always increase the accumulative exchange rate by taking another round trip in this loop.
+
 \section{} %5
 
 \end{document}
