@@ -21,6 +21,24 @@ This was done in collaboration with Constantin Blach (s4329872).
 
 \section{} %1
 \section{} %2
+We worked out the following algorithm:
+
+\begin{lstlisting}
+A <- bellman_ford(G)
+ratings <- []
+
+for u, v in E'
+	G' <- (A.V, union(A.E, (u, v)))
+	for u', v' in {(u', v') in G'.E | reachable(u, u')}
+		relax(u', v')
+	append(ratings, t)
+
+sort(E', ratings)
+output "Build road %s", head(E')
+\end{lstlisting}
+
+Where $G$ is the given graph, $E'$ the set of proposed roads, $A.E$ is the set of edges of graph $A$, $A.V$ is the set of vertices for graph $A$, $relax(e)$ relaxes edge $e$, $sort(A, b)$ sorts $A$ by $b$ (in increasing order), $head(L)$ returns the first element from list $L$, $reachable(a, b)$ return whether $b$ can be reached from $a$, and $union(A, B) = A \cup B$.
+
 \section{} %3
 \textbf{Note: On the exercise sheet there is a contradiction:} it says to use $z$ as a starting node but in the picture just below that it shows $s$ to be the starting node. As I did not know which one was correct and because $s$ is a conventional name for the starting node I chose for $s$ as the starting point.
 
